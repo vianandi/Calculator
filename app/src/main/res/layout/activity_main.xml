@@ -31,7 +31,9 @@
         android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/blue_black"
-        android:textSize="64sp"></TextView>
+        android:textSize="64sp">
+
+    </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"

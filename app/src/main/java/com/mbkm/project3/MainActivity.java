@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+
+
         if(btnText.equals("=")){
+
             input.setText(result.getText());
             return;
         }
@@ -88,13 +91,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else{
             calculate = calculate+btnText;
         }
+        calculate = calculate.replaceAll("%", "/100");
+        result.setText(getResult(calculate));
         input.setText(calculate);
         String finalResult = getResult(calculate);
 
         if(!finalResult.equals("Error")){
             result.setText(finalResult);
         }
-//        input.setText(btnText);
     }
 
     String getResult(String data){
@@ -103,13 +107,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             context.setOptimizationLevel((-1));
             Scriptable scriptable = context.initStandardObjects();
             String finalResult = context.evaluateString(scriptable,data, "Javascript", 1, null).toString();
+
             if(finalResult.endsWith(".0")){
                 finalResult = finalResult.replace(".0"," ");
             }
             return  finalResult;
-//            return "Calculated";
         }catch (Exception e){
-            return "Error";
+            return "";
         }
     }
 }
